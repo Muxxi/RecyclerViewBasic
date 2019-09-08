@@ -1,6 +1,7 @@
 package com.example.recyclerviewbasic.Data
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewbasic.GalleryActivity
 import com.example.recyclerviewbasic.Model.PersonDetails
 import com.example.recyclerviewbasic.R
+
 
 class PersonDataAdapter(private var list : ArrayList<PersonDetails> ,
                         private var context: Context) : RecyclerView.Adapter<PersonDataAdapter.ViewHolder>() {
@@ -41,6 +44,10 @@ class PersonDataAdapter(private var list : ArrayList<PersonDetails> ,
 
             item.setOnClickListener {
                 Toast.makeText(context,name.text,Toast.LENGTH_SHORT).show()
+                val intent = Intent(context,GalleryActivity::class.java)
+                intent.putExtra("Image",person.img)
+                intent.putExtra("Name",person.name)
+                context.startActivity(intent)
             }
 
         }
